@@ -1,6 +1,6 @@
 const container = document.getElementById("card__grid");
 const transaction__container = document.getElementById("transaction__grid");
-const apiURL = "https://wampflercoinbackend.onrender.com";
+const apiURL = "https://wampflercoinbackend.onrender.com/";
 
 const fetchOptions = {
   method: "GET",
