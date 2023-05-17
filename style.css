@@ -1,0 +1,411 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+body {
+  background: linear-gradient(
+    140deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 49, 78, 1) 56%,
+    rgba(0, 126, 74, 1) 100%
+  );
+}
+.grainy-gradient {
+  width: 100%;
+  position: relative;
+}
+
+.grainy-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("img/noise.png");
+  opacity: 0.2; /* Adjust the opacity to control the grain effect */
+  pointer-events: none; /* Allow interaction with underlying elements */
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 5rem;
+}
+main {
+  padding: 0 5%;
+}
+.settings_main {
+  height: 84vh;
+}
+.nav__controls button {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 3px;
+  margin-left: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.logo__name {
+  font-size: 3rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+.card__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+}
+.grid__item {
+  border: 1px solid rgb(167, 167, 167);
+  margin: 1rem;
+  padding: 10px 10px 20px 20px;
+  border-radius: 0.2rem;
+}
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.space__line {
+  height: 2px;
+  background-color: rgb(167, 167, 167);
+  margin: 0.8rem 0;
+}
+.hash__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.hash__code {
+  color: red;
+}
+.previousHash__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.previousHash__code {
+  color: green;
+}
+.nonce__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.timestamp__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/*Transactions*/
+.transactionBlock__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.transactions .card__grid {
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+}
+.address__container {
+  display: flex;
+}
+.fromAddress__title {
+  padding-right: 1rem;
+}
+.fromAddress__code {
+  padding-right: 1rem;
+}
+.toAddress__title {
+  padding-right: 1rem;
+}
+.info__container {
+  display: flex;
+}
+.signature__title {
+  padding-right: 1rem;
+}
+.signature__code {
+  padding-right: 1rem;
+}
+.amount__title {
+  padding-right: 1rem;
+}
+.transaction {
+  margin-top: 1rem;
+  outline: 1px solid black;
+}
+
+#transaction__table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#transaction__table td,
+#transaction__table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#transaction__table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#transaction__table tr:hover {
+  background-color: #4f4f4f;
+}
+
+#transaction__table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4400ff;
+  color: white;
+}
+.section_title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 5rem;
+}
+.transaction__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  justify-self: center;
+}
+.genesisBlockTransactions {
+  font-size: 1.2rem;
+  justify-self: center;
+}
+
+/*Popup*/
+
+.popup .overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  display: none;
+}
+
+.popup .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #fff;
+  width: 800px;
+  height: 40%;
+  z-index: 2;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.popup .content h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: black;
+  font-size: 1.5rem;
+}
+.popup .content form {
+  display: flex;
+  flex-direction: column;
+}
+.popup .content form input {
+  margin-bottom: 1rem;
+  color: black;
+  height: 2rem;
+  padding: 0 1rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+.popup .content form button {
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: transparent;
+  height: 2.2rem;
+  transition: 0.3s all ease-in-out;
+}
+.popup .content form button:hover {
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+.popup .content form label {
+  color: black;
+  font-size: 0.8rem;
+}
+.ownWalletAddress {
+  background-color: rgba(128, 128, 128, 0.299);
+}
+.walletAddress{
+  margin-bottom: 1rem;
+  color: black;
+  height: 2rem;
+  padding: 0 1rem;
+  border-radius: 3px;
+  border: 1px solid black;
+  width: 100%;
+}
+.getBalanceBtn{
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: transparent;
+  height: 2.2rem;
+  transition: 0.3s all ease-in-out;
+  width: 100%;
+}
+.getBalanceBtn:hover{
+  color: white;
+  background-color: black;
+  cursor: pointer;
+}
+.displayBalance{
+  margin-top: 2rem;
+}
+.popup .closeBtn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: #222;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.popup.active .overlay {
+  display: block;
+}
+.popup.active .content {
+  transition: all 300ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
+}
+.settings {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.difficulty {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.difficulty label {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.difficulty input {
+  font-size: 1.2rem;
+  color: black;
+  padding: 0 0.5rem;
+}
+.miningReward {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.miningReward label {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.miningReward input {
+  font-size: 1.2rem;
+  color: black;
+  padding: 0 0.5rem;
+}
+.saveSettings {
+  background-color: rgb(0, 113, 227);
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin-top: 1.4rem;
+  border-radius: 3px;
+  transition: 0.3s ease-in-out;
+}
+.button {
+  background-color: transparent;
+  border: 1px solid white;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin-top: 1.4rem;
+  border-radius: 3px;
+  margin: 10px;
+  transition: 0.3s ease-in-out;
+}
+.button:hover,
+.saveSettings:hover {
+  cursor: pointer;
+  box-shadow: 0px 1px 17px 5px #0071e3;
+}
+
+/* Sweep To Right | Source: https://github.com/IanLunn/Hover/blob/master/css/hover.css */
+.hvr-sweep-to-right {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-sweep-to-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.4s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-sweep-to-right:hover,
+.hvr-sweep-to-right:focus,
+.hvr-sweep-to-right:active {
+  color: black;
+  cursor: pointer;
+}
+.hvr-sweep-to-right:hover:before,
+.hvr-sweep-to-right:focus:before,
+.hvr-sweep-to-right:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}

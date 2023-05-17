@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Settings</title>
+  </head>
+  <body class="grainy-gradient">
+    <nav>
+      <div class="logo">
+        <a href="index.html" class="logo__name">WampflerCoin</a>
+      </div>
+      <div class="nav__controls">
+        <button
+          class="hvr-sweep-to-right"
+          onclick="togglePopupAddTransaction()"
+        >
+          Create Transaction
+        </button>
+        <button class="hvr-sweep-to-right" onclick="minePendingTransactions()">
+          Mine Pending Transaction
+        </button>
+      </div>
+    </nav>
+    <main class="settings_main">
+      <section class="settings">
+        <div class="section_title">Settings</div>
+        <div class="settings__container">
+          <div class="difficulty">
+            <label for="2">Difficulty</label>
+            <input type="number" value="2" id="difficulty" />
+            <small
+              >Difficulty controls how long the mining process takes. Higher
+              numbers will make mining slower! <br />
+              Default: 2</small
+            >
+          </div>
+          <div class="miningReward">
+            <label for="100">Mining Reward</label>
+            <input type="number" value="100" id="reward" />
+            <small
+              >Defines how many coins a miner gets for mining a new block in the
+              chain. <br />
+              Default: 100</small
+            >
+          </div>
+          <button class="saveSettings" onclick="changeSettings()">Save</button>
+          <button class="button">Cancel</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="popup" id="popup-1">
+      <div class="overlay">
+        <div class="content" id="popup-content">
+          <div class="closeBtn" onclick="togglePopupAddTransaction()">
+            &times;
+          </div>
+          <h1>Create a Transaction</h1>
+          <form>
+            <label
+              for="04cbf3835f158fde2edbe7de569790767175c1af063895c08bedc8a72864ab1728a1faab4efe92918e61fca947b023e70e7bcea97fafda253ecf203a5fce9124c8"
+              >You cannot change your wallet Address because you can only spend
+              your own coins</label
+            >
+            <input
+              class="ownWalletAddress"
+              type="text"
+              value="04cbf3835f158fde2edbe7de569790767175c1af063895c08bedc8a72864ab1728a1faab4efe92918e61fca947b023e70e7bcea97fafda253ecf203a5fce9124c8"
+              disabled
+              id="ownWalletAddress"
+            />
+            <input
+              type="text"
+              placeholder="Address of Receiver"
+              id="toAddress"
+            />
+            <input type="number" placeholder="Amount" id="amount" />
+            <button onclick="addTransaction()">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="settings.js"></script>
+  </body>
+</html>
