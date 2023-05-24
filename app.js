@@ -1,7 +1,7 @@
 const container = document.getElementById("card__grid");
 const transaction__container = document.getElementById("transaction__grid");
-const apiURL = "https://wampflercoinbackend.onrender.com/";
-
+const apiURL = "http://localhost:8383/";
+//https://wampflercoinbackend.onrender.com/
 const fetchOptions = {
   method: "GET",
   headers: {
@@ -63,9 +63,10 @@ async function displayTransactions() {
   for (const block of chain) {
     const table = document.createElement("table");
     table.id = "transaction__table";
-    html += `<div class="transaction__title">${
+    html = `<div class="transaction__title">${
       i === 0 ? "Genesis Block" : "Block " + i
     }</div>`;
+    transaction__container.innerHTML += html;
     transaction__container.append(table);
     if (block.transactions == "Genesis Block") {
       table.innerHTML += `<span class="genesisBlockTransactions">No Transactions<span>`;

@@ -6,14 +6,14 @@ const app = express();
 const port = 8383;
 const bodyParser = require("body-parser");
 
-app.use(bodyParser.json());
-
 const myKey = ec.keyFromPrivate(
   "51c1df67d0a70d3f6c94b3c168349bcef6d6b047a01595e6aa5667d41f595e1a"
 );
 const myWalletAddress = myKey.getPublic("hex");
 
 let wampflerCoin = new Blockchain();
+
+
 
 for (let index = 0; index < 3; index++) {
   const tx = new Transaction(myWalletAddress, "OtherWalletAddress", 10);
@@ -30,7 +30,7 @@ console.log(
 console.log("Is chain valid? ", wampflerCoin.isChainValid());
 console.log(myWalletAddress);
 
-
+app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
