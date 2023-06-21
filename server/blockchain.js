@@ -2,6 +2,7 @@ const SHA256 = require("crypto-js/sha256");
 const EC = require("elliptic").ec;
 const ec = new EC("secp256k1");
 
+//Source: https://www.youtube.com/watch?v=zVqczFZr124&ab_channel=SimplyExplained
 class Transaction {
   constructor(fromAddress, toAddress, amount) {
     this.fromAddress = fromAddress;
@@ -134,6 +135,23 @@ class Blockchain {
     return balance;
   }
 
+  //Own Work
+  getAllWalletAddresses() {
+    const wallets = [];
+  
+    for (const block of this.chain) {
+      for (const trans of block.transactions) {
+        if (trans.fromAddress && !wallets.includes(trans.fromAddress)) {
+          wallets.push(trans.fromAddress);
+        }
+        if (trans.toAddress && !wallets.includes(trans.toAddress)) {
+          wallets.push(trans.toAddress);
+        }
+      }
+    }
+    return wallets;
+  }
+//Source: https://www.youtube.com/watch?v=zVqczFZr124&ab_channel=SimplyExplained
   isChainValid() {
     for (let i = 1; i < this.chain.length; i++) {
       const currentBlock = this.chain[i];

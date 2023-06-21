@@ -1,3 +1,4 @@
+//Source: https://www.youtube.com/watch?v=zVqczFZr124&ab_channel=SimplyExplained
 const EC = require("elliptic").ec;
 const ec = new EC("secp256k1");
 

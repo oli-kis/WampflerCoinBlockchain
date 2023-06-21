@@ -37,7 +37,6 @@ function minePendingTransactions() {
 function changeSettings() {
   const difficulty = document.getElementById("difficulty").value;
   const reward = document.getElementById("reward").value;
-  console.log(difficulty, reward);
   fetch(apiURL + "changeSettings", {
     method: "POST",
     body: JSON.stringify({
@@ -52,6 +51,26 @@ function changeSettings() {
     .then((data) => location.reload());
   alert("The settings were succesfully changed!");
 }
+
+function getAllWalletAddresses() {
+  const dropdown = document.getElementById('walletDropdown');
+  dropdown.innerHTML = '';
+  fetch(apiURL + "getAllWalletAddresses", {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      for (const item of data) {
+        const option = document.createElement('option');
+        option.textContent = item;
+        dropdown.appendChild(option);
+      }
+    });
+}
+
 
 function togglePopupAddTransaction() {
   document.getElementById("popup-1").classList.toggle("active");

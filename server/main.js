@@ -23,10 +23,6 @@ for (let index = 0; index < 3; index++) {
   wampflerCoin.minePendingTransactions(myWalletAddress);
 }
 
-console.log(
-  "\nBalance of Olivier is",
-  wampflerCoin.getBalanceOfAddress(myWalletAddress)
-);
 console.log("Is chain valid? ", wampflerCoin.isChainValid());
 console.log(myWalletAddress);
 
@@ -45,6 +41,12 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.send(wampflerCoin);
 });
+
+app.get("/getAllWalletAddresses", (req, res) => {
+  const wallets = wampflerCoin.getAllWalletAddresses();
+  res.send(wallets);
+});
+
 app.post("/addTransaction", (req, res) => {
   // Create a new transaction object and sign it
   const tx1 = new Transaction(
@@ -73,6 +75,7 @@ app.post("/minePendingTransactions", (req, res) => {
     res.send("Pending transactions mined");
   }
 });
+
 app.post("/changeSettings", (req, res) => {
   wampflerCoin.difficulty = req.body.difficulty;
   wampflerCoin.miningReward = req.body.reward;
@@ -83,5 +86,7 @@ app.get("/getBalance", (req, res) => {
   const balance = wampflerCoin.getBalanceOfAddress(req.query.walletAddress);
   res.send(balance.toString());
 });
+
+
 
 app.listen(port, () => console.log("Server started"));
